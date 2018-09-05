@@ -1,0 +1,215 @@
+Refer: https://www.hackerrank.com/challenges/cavity-map/topics/string-basics
+https://docs.oracle.com/javase/tutorial/
+
+String: Sequence of Characters.
+
+Note: The String class is immutable, so that once it is created a String object cannot be changed. The String class has a number of methods, some of which will be discussed below, that appear to modify strings. Since strings are immutable, what these methods really do is create and return a new string that contains the result of the operation.
+
+
+Note: The Java programming language does not permit literal strings to span lines in source files, so you must use the + concatenation operator at the end of each line in a multi-line string. For example:
+String quote =
+    "Now is the time for all good " +
+    "men to come to the aid of their country.";
+
+
+String fs;
+fs = String.format("variable is %f, while " +
+                   "the value of the " +
+                   "integer variable is %d, " ,
+                   floatVar, intVar);
+
+
+Strings are not available in C instead, we use a char array to read strings, where the end of string is marked with the special character \0 often called as null character.
+
+
+For iterating array sotres the length of array in a variable, then use that for iterating.
+
+Substring:
+A substring is a part of string  such that . It is a contiguous slice of the original string.
+For example : List of substrings of string S = "abc" contains following strings.
+a,b,c,ab,bc,abc
+string of length N contains N*(N+1)/2 substrings.
+
+Subsequence:
+A subsequence is a sequence that can be derived from another sequence by deleting some elements ( possibly zero but not all ) without changing the order of the remaining elements.
+List of subsequences of string S = "abc" contains following sequences.
+abc,ab,ac,bc,a,b,c
+sequence of n contains 2^n-1
+
+Subset:
+Subset is any unordered set of elements from the original list.(but element need to be unique in every set)
+For example : List of subsets of string S = "abc" contains following sets.
+{},{a},{b},{c},{a,b},{b,c},{a,c},{a,b,c}
+set of N size contains 2^n subsets.
+NOTE :
+{b,a,c} is a subset of string "abc" but not a subsequence.
+Each subsequence of a collection of elements is its subset also, but reverse does not hold.
+
+Sublist:
+Sublist is any unordered list derived from the original list. Here elements need not be unique, but should exist on separate indices in the original list.
+
+
+Converting Strings to Numbers:
+1. valueOf : The Number subclasses that wrap primitive numeric types ( Byte, Integer, Double, Float, Long, and Short) each provide a class method named valueOf that converts a string to an object of that type.
+float a = (Float.valueOf(args[0])).floatValue();
+
+2. parseXXXX():  a primitive type is returned instead of an object
+float a = Float.parseFloat("1.2");
+int b = Integer.parseInt("3");
+
+Converting Numbers to Strings:
+1. concate number with empty string:
+String s1= ""+i ;
+2. The valuOf class
+String s2= String.valueOf(i);
+3. toString
+String s3 = Integer.toString(i);
+
+
+##########################################################
+Manipulating Characters in a String
+
+1. charAt: String a = "abc"; //a.charAt(2)->c
+2. Substring: For getting more than one
+substring(int beginIndex, int endIndex) //exclusive endInde
+substring(int beginIndext)
+3. String[] split(String regex)
+    String[] split(String regex,int limit)
+    //limit: max size of returned array
+4. String trim() // Retruns a copy of this string with leading and trailing white space removed.
+5. String toLowerCase()
+   String toUpperCase()
+
+
+Searching for character and substring in a string.
+
+1. int indexOf(int ch)
+   int lastIndexOf(int ch)
+2.int indexOf(int ch, int fromIndex)
+int lastIndexOf(int ch, int fromIndex)
+3. int indexOf(String str)
+int lastIndexOf(String str)
+4.int indexOf(String str, int fromIndex)
+int lastIndexOf(String str, int fromIndex
+5.boolean contains(CharSequence s) true if string contains specified char sequence
+Note: CharSequence is an interface that is implemented by the String class. Therefore, you can use a string as an argument for the contains() method.
+
+
+Replacing Characters and Substrings into a String.
+
+1. String replace(char oldChar, char newChar)
+2. String replace(CharSequence target, CharSequence replacement)
+3.String replaceAll(String regex, String replacement)
+4.String replaceFirst(String regex, String replacement)
+
+
+Comparing Strings and Portins of Strings
+
+1.boolean endsWith(String suffix)
+boolean startsWith(String prefix)
+2.boolean startsWith(String prefix, int offset)
+//from offset index,
+3.int compareTo(String anotherString)
+Compares two strings lexicographically.
+s1.compareTo(s2) // s1>s2:  >1
+                    s1==s2: 0
+                    s1<s2 :  <1
+4. int compareToIgnoreCase(String str)
+5. boolean equals(Object anObject)
+//true if objects represent the same sequence of characters
+6. boolean equalsIgnoreCase(String anotherString)
+7/boolean matches(String regex)
+//check weather string matches the specified regular expression
+
+
+##########################################################
+The StringBuilder Class:
+StringBuilder objects are like String objects, except that they can be modified.
+The StringBuilder class, like the String class, has a length() method that returns the length of the character sequence in the builder.
+
+ has a capacity, the number of character spaces that have been allocated. The capacity, which is returned by the capacity() method, is always greater than or equal to the length
+ StringBuilder sb = new StringBuilder(1000);
+sb.append("testing");
+..capcity() 1000, and length()  7
+capacity automatically expand but impact performance.
+
+
+StringBuilder Constructors
+........................................................
+1. StringBuilder()
+Creates an empty string builder with a capacity of 16 (16 empty elements).
+2. StringBuilder(int initCapacity)
+3. StringBuilder(String s)
+//initialized by string s+ plus extra 16 empty elements trailing the string
+
+
+Length and Capcity Methods
+.........................................................
+1. setLength(int newLength)
+//set length of character sequence, If newLength is less than length(), the last characters in the character sequence are truncated. If newLength is greater than length(), null characters are added at the end of the character sequence.
+
+2. ensureCapacity(int minCapacity)
+Ensures that the capacity is at least equal to the specified minimum.
+
+
+StringBuilder Operations
+..........................................................
+1. StringBuilder append(boolean b)
+StringBuilder append(char c)
+StringBuilder append(char[] str)
+StringBuilder append(char[] str, int offset, int len)
+StringBuilder append(double d)
+StringBuilder append(float f)
+StringBuilder append(int i)
+StringBuilder append(long lng)
+StringBuilder append(Object obj)
+StringBuilder append(String s)
+Appends the argument to this string builder. The data is converted to a string before the append operation takes place.
+
+2.StringBuilder delete(int start, int end)
+StringBuilder deleteCharAt(int index)
+The first method deletes the subsequence from start to end-1 (inclusive) in the StringBuilder's char sequence. The second method deletes the character located at index
+
+3. StringBuilder replace(int start, int end, String s)
+void setCharAt(int index, char c)
+//replace char at index with c
+
+4.StringBuilder reverse()
+
+5. String toString()
+Returns a string that contains the character sequence in the builder.
+
+Note: There is also a StringBuffer class that is exactly the same as the StringBuilder class, except that it is thread-safe by virtue of having its methods synchronized.
+
+
+#########################################################
+
+Autoboxing and Unboxing
+Autoboxing is the automatic conversion that the Java compiler makes between the primitive types and their corresponding object wrapper classes. For example, converting an int to an Integer, a double to a Double, and so on. If the conversion goes the other way, this is called unboxing.
+
+Primitive type  Wrapper class
+boolean         Boolean
+byte            Byte
+char            Character
+float           Float
+int             Integer
+long            Long
+short           Short
+double          Double
+
+
+Extraaa:
+1. System.out.printf("%.2f", val); val upto 2 decimal
+2. String formatted = String.format("%03d", a);
+  //a =2 ; output=002 ; 0 - to pad with zeros
+3 - to set width to 3
+
+
+##########################################################
+Regular Expressions
+...................
+
+
+
+
+
